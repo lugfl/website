@@ -136,9 +136,11 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/archive.html", "Archiv"),
-        ("/categories/", "Tags"),
-        ("/rss.xml", "RSS-Feed"),
+        ("/pages/der-verein/", "Der Verein"),
+        ("/pages/entstehung-der-lugfl/", "Entstehung"),
+        ("/pages/satzung/", "Satzung"),
+        ("/pages/datenschutzerklaerung/", "Datenschutzerklärung"),
+        ("/pages/impressum/", "Impressum"),
     ),
 }
 
