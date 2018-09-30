@@ -1852,13 +1852,45 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.menu-bar span{
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .main-menubar nav {
+	background: #fff;
+	margin-top: -6px;
+  }
+  .navbar-nav {
+	display: none;
+}
+  .menu-bar span {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-nav.responsive {position: relative;display: block;}
+  .menu-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar-nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 .menu-bar {
   cursor: pointer;
 }
 
 .menu-bar span {
   color: #000;
-  font-size: 24px;
+  font-size: 30px;
+  margin-top: -10px;
 }
 
 .main-menubar {
