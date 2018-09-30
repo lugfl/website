@@ -81,6 +81,8 @@ lang="{{ lang }}">
             <script src="/assets/js/baguetteBox.min.js"></script>
             <script src="/assets/js/moment-with-locales.min.js"></script>
             <script src="/assets/js/fancydates.min.js"></script>
+            <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+            <script src="/assets/js/main.js"></script>
         {% endif %}
     {% endif %}
     {{ social_buttons_code }}
@@ -104,9 +106,10 @@ lang="{{ lang }}">
         <link href="/assets/css/rst.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/code.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/theme.css" rel="stylesheet" type="text/css">
-        {% if has_custom_css %}
-            <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
-        {% endif %}
+		<link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/linearicons.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/main.css" rel="stylesheet" type="text/css">
     {% endif %}
     {% if needs_ipython_css %}
         <link href="/assets/css/ipython.min.css" rel="stylesheet" type="text/css">
