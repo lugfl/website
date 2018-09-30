@@ -2112,23 +2112,6 @@ body {
   }
 }
 
-.hero-area:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 50%;
-  height: 90%;
-  background: url(../img/hero-bg.png) no-repeat bottom right/contain;
-  z-index: 2;
-}
-
-@media (max-width: 575px) {
-  .hero-area:after {
-    display: none;
-  }
-}
-
 .working-process-area {
   background: #fff;
   padding: 100px 0;
