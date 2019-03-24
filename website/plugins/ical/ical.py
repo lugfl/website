@@ -17,7 +17,11 @@
 
 from __future__ import print_function
 
+import doit
+from datetime import datetime, timedelta
+from dateutil.rrule import rrulestr, rruleset
 import icalendar as ical
+from pytz import UTC
 
 from nikola.plugin_categories import ShortcodePlugin
 from nikola.utils import LocaleBorg
@@ -36,7 +40,7 @@ class CalendarPlugin(ShortcodePlugin):
         super(CalendarPlugin, self).set_site(site)
         self.site.register_shortcode('calendar', self.handler)
 
-    def handler(self, site=None, data=None, lang=None, file=None, template=None, post=None):
+    def handler(self, site=None, data=None, lang=None, file=None, template=None, post=None, days_in_future=None, days_in_past=0):
         if not template:
             template = 'calendar.tmpl'
         deps = self.site.template_system.template_deps(template)
@@ -61,7 +65,44 @@ class CalendarPlugin(ShortcodePlugin):
                     eventdict['dtstart'] = element.get('dtstart').dt
                 if element.get('dtend') is not None:
                     eventdict['dtend'] = element.get('dtend').dt
-                events.append(eventdict)
+
+                rules_text = '\n'.join([line for line in element.content_lines() if line.startswith('RRULE')])
+                if days_in_future is not None and rules_text:
+
+                    # Build rrule to use for calculation if available
+                    rules = rruleset()
+                    first_rule = rrulestr(rules_text, dtstart=element.get('dtstart').dt)
+
+                    # force UTC if no tzinfo is present in until part (bug in older iCal and Moz)
+                    if first_rule._until and first_rule._until.tzinfo is None:
+                        first_rule._until = first_rule._until.replace(tzinfo=UTC)
+                    rules.rrule(first_rule)
+
+                    # Also check for excluded dates in entry, has API list bug for single entry
+                    exdates = element.get('exdate')
+                    if not isinstance(exdates, list):
+                        exdates = [exdates]
+                    for exdate in exdates:
+                        #doit.tools.set_trace()
+                        try:
+                            #rules.exdate(exdate.dts[0].dt)
+                            pass
+                        except AttributeError:  # skip empty entries
+                            pass
+
+                    calc_startdate = datetime.now(tz=UTC)
+                    calc_startdate -= timedelta(days=int(days_in_past))
+                    calc_enddate = datetime.now(tz=UTC)
+                    calc_enddate += timedelta(days=int(days_in_future))
+
+                    for entry_calcdate in rules.between(calc_startdate, calc_enddate):
+                        new_entry = eventdict.copy()
+                        duration = new_entry['dtend'] - new_entry['dtstart']
+                        new_entry['dtstart'] = entry_calcdate
+                        new_entry['dtend'] = entry_calcdate + duration
+                        events.append(new_entry)
+                else:
+                    events.append(eventdict)
 
         output = self.site.render_template(
             template,
