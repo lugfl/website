@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import time
+import babel
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -136,6 +137,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
+        ("/pages/termine/", "Termine"),
         ("/pages/der-verein/", "Der Verein"),
         ("/pages/entstehung-der-lugfl/", "Entstehung"),
         ("/pages/satzung/", "Satzung"),
@@ -1333,7 +1335,16 @@ WARN_ABOUT_TAG_METADATA = False
 # Templates will use those filters, along with the defaults.
 # Consult your engine's documentation on filters if you need help defining
 # those.
-# TEMPLATE_FILTERS = {}
+def format_datetime(value, format='medium', locale="de"):
+    if format == 'full':
+        format="EEEE, d. MMMM y HH:mm"
+    elif format == 'medium':
+        format="EE dd.MM.y HH:mm"
+    return babel.dates.format_datetime(value, format, TIMEZONE, locale=locale)
+
+TEMPLATE_FILTERS = {
+    'datetime' : format_datetime
+}
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
