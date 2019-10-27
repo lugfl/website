@@ -5,7 +5,7 @@
         <dd>{{ event.dtstart|datetime('short') }}</dd>
         <dd>{{ event.dtend|datetime('short') }}</dd>
         {% if event.url %}
-            <dd class="footer"><a href="{{ event.url }}">See more</a></dd>
+            <dd class="footer"><a href="{{ event.url }}">Mehr...</a></dd>
         {% endif %}
     {% endfor %}
 </dl>
