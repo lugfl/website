@@ -8,3 +8,5 @@
 .. type: text
 
 {{% calendar file=files/LUGFL.ics days_in_future=90 %}}
+
+`Link zum Kalender (.ics) </LUGFL.ics>`_
