@@ -137,7 +137,6 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/pages/termine/", "Termine"),
         ("/pages/der-verein/", "Der Verein"),
         ("/pages/entstehung-der-lugfl/", "Entstehung"),
         ("/pages/satzung/", "Satzung"),
