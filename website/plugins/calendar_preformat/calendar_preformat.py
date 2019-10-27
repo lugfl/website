@@ -93,6 +93,11 @@ class Plugin(Task):
                         calc_enddate += timedelta(days=int(days_in_future))
 
                         for entry_calcdate in rules.between(calc_startdate, calc_enddate):
+                            tzname = entry_calcdate.tzinfo.zone
+                            entry_calcdate = entry_calcdate.replace(tzinfo=None)
+                            timezone = pytz.timezone(tzname)
+                            entry_calcdate = timezone.localize(entry_calcdate)
+
                             new_entry = eventdict.copy()
                             duration = new_entry['dtend'] - new_entry['dtstart']
                             new_entry['dtstart'] = entry_calcdate
