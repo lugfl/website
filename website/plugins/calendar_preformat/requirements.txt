@@ -1,0 +1,6 @@
+Nikola
+doit
+logbook
+icalendar
+pytz
+babel

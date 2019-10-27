@@ -1,0 +1,14 @@
+[Core]
+Name = calendar_preformat
+Module = calendar_preformat
+Tests = test_calendar_preformat
+
+[Nikola]
+PluginCategory = Task
+
+[Documentation]
+Author = Markus Ullmann
+Version = 1.0
+Website = http://plugins.getnikola.com/#calendar_preformat
+Description = Preformats events from a calendar file so it can be included in templates via command before using shortcodes
+

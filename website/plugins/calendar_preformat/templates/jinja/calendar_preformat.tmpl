@@ -1,0 +1,11 @@
+<dl>
+    {% for event in events %}
+        <dt>{{ event.summary }}</dt>
+        <dd>{{ event.location|replace('\n', '<br>') }}</dd>
+        <dd>{{ event.dtstart|datetime('short') }}</dd>
+        <dd>{{ event.dtend|datetime('short') }}</dd>
+        {% if event.url %}
+            <dd class="footer"><a href="{{ event.url }}">See more</a></dd>
+        {% endif %}
+    {% endfor %}
+</dl>
