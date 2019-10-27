@@ -1353,3 +1353,14 @@ GLOBAL_CONTEXT = {}
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+# File to read VEVENTS from
+CALENDAR_FILENAME = "files/LUGFL.ics"
+
+# When calculating recurring events, how many should we show?
+CALENDAR_DAYS_IN_PAST = 0
+CALENDAR_DAYS_IN_FUTURE = 80
+
+# File to render to
+CALENDAR_OUTPUT_FILENAME = "events.tmpl"
+
