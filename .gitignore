@@ -6,3 +6,5 @@ website/.doit.db
 
 .workenv
 .workenv-leave
+
+plugins/calendar_preformat/templates/jinja/events.tmpl
