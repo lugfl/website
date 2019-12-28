@@ -7,4 +7,6 @@ website/.doit.db
 .workenv
 .workenv-leave
 
+__pycache__
+
 plugins/calendar_preformat/templates/jinja/events.tmpl
