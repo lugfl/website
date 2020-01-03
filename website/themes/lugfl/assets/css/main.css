@@ -1856,7 +1856,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .main-menubar nav {
 	background: #fff;
 	margin-top: -6px;
@@ -1870,7 +1870,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .navbar-nav.responsive {position: relative;display: block;}
   .menu-bar {
     position: absolute;
