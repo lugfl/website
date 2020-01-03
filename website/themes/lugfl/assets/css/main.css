@@ -2028,7 +2028,7 @@ body {
   }
 }
 
-.primary-btn {
+.primary-btn, ul.pager li a {
   line-height: 40px;
   padding: 0 30px;
   border-radius: 20px;
@@ -2045,7 +2045,7 @@ body {
   cursor: pointer;
 }
 
-.primary-btn:focus {
+.primary-btn:focus, ul.pager li a:focus {
   outline: none;
 }
 
@@ -2074,6 +2074,14 @@ body {
 .primary-btn:hover {
   color: #fff;
   border: 1px solid transparent;
+}
+
+ul.pager li a:hover {
+  color: #fff;
+  border: 1px solid transparent;
+  background-image: -moz-linear-gradient(0deg, #3e69fe 0%, #4cd4e3 100%);
+  background-image: -webkit-linear-gradient(0deg, #3e69fe 0%, #4cd4e3 100%);
+  background-image: -ms-linear-gradient(0deg, #3e69fe 0%, #4cd4e3 100%);
 }
 
 .primary-btn:hover:after {
