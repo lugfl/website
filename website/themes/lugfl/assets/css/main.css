@@ -4,7 +4,7 @@
 /* Mobile Layout: 320px */
 /* Wide Mobile Layout: 480px */
 /* =================================== */
-/*  Basic Style 
+/*  Basic Style
 /* =================================== */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -1967,13 +1967,14 @@ body {
 
 @media (max-width: 1199px) {
   .main-wrapper-first {
+    margin-top: 4rem;
     width: 90%;
   }
 }
 
 @media (max-width: 767px) {
   .main-wrapper-first {
-    margin-top: 3rem;
+    margin-top: .5rem;
     width: 97%;
   }
 }
@@ -2093,11 +2094,11 @@ body {
 }
 
 .banner-area .generic-height {
-  height: 400px;
+  height: 300px;
 }
 
 .banner-area .banner-content {
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .banner-area .banner-content h1 {
@@ -2114,7 +2115,7 @@ body {
 
 .working-process-area {
   background: #fff;
-  padding: 100px 0;
+  padding: 40px 0;
 }
 
 .total-work-process {
@@ -2510,7 +2511,7 @@ body {
 
 footer {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  margin-top: 100px;
+  margin-top: 30px;
   padding: 15px 0;
 }
 
@@ -2520,7 +2521,7 @@ footer .copy-right-text {
 
 @media (max-width: 991px) {
   footer .copy-right-text {
-    margin: 20px 0;
+    margin: 10px 0;
   }
 }
 
