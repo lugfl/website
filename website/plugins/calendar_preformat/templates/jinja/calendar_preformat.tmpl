@@ -1,11 +1,17 @@
-<dl>
+<dl class="event-calendar">
     {% for event in events %}
-        <dt>{{ event.summary }}</dt>
-        <dd>{{ event.location|replace('\n', '<br>') }}</dd>
-        <dd>{{ event.dtstart|datetime('short') }}</dd>
-        <dd>{{ event.dtend|datetime('short') }}</dd>
-        {% if event.url %}
-            <dd class="footer"><a href="{{ event.url }}">Mehr...</a></dd>
-        {% endif %}
+    <div itemprop="event" itemscope itemtype="http://schema.org/Event">
+        <dt itemprop="name">{{ event.summary }}</dt>
+        <dd itemprop="location">{{ event.location|replace('\n', '<br>') }}</dd>
+        <div class="event-date">
+            <dd><meta itemprop="startDate" content="{{ event.dtstart|datetime('short') }}">Am: {{ event.dtstart|datetime('short') }}</dd>
+            {% if event.dtend %}
+                <dd><meta itemprop="endDate" content="{{ event.dtend|datetime('short') }}">Bis: {{ event.dtend|datetime('short') }}</dd>
+            {% endif %}
+            {% if event.url %}
+                <dd class="footer"><a href="{{ event.url }}">Mehr...</a></dd>
+            {% endif %}
+        </div>
+    </div>
     {% endfor %}
 </dl>
