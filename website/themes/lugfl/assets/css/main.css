@@ -1863,14 +1863,11 @@ h1, h2, h3, h4, h5, h6 {
   }
   .navbar-nav {
 	display: none;
-}
+  }
   .menu-bar span {
     float: right;
     display: block;
   }
-}
-
-@media screen and (max-width: 768px) {
   .navbar-nav.responsive {position: relative;display: block;}
   .menu-bar {
     position: absolute;
@@ -2105,8 +2102,8 @@ ul.pager li a:hover {
   height: 300px;
 }
 
-.banner-area .banner-content {
-  margin-top: 80px;
+.banner-area {
+  padding-top: 50px;
 }
 
 .banner-area .banner-content h1 {
