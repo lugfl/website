@@ -47,6 +47,14 @@ class Plugin(Task):
                 cal = ical.Calendar.from_ical(inputfile.read())
 
             events = []
+
+            calc_startdate = datetime.now(tz=UTC)
+            if days_in_past:
+                calc_startdate -= timedelta(days=int(days_in_past))
+            calc_enddate = datetime.now(tz=UTC)
+            if days_in_future:
+                calc_enddate += timedelta(days=int(days_in_future))
+
             for element in cal.walk():
                 eventdict = {}
                 if element.name == "VEVENT":
@@ -86,11 +94,6 @@ class Plugin(Task):
                                 pass
                             except AttributeError:  # skip empty entries
                                 pass
-
-                        calc_startdate = datetime.now(tz=UTC)
-                        calc_startdate -= timedelta(days=int(days_in_past))
-                        calc_enddate = datetime.now(tz=UTC)
-                        calc_enddate += timedelta(days=int(days_in_future))
 
                         for entry_calcdate in rules.between(calc_startdate, calc_enddate):
                             tzname = entry_calcdate.tzinfo.zone
