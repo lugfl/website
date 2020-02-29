@@ -118,7 +118,7 @@ class Plugin(Task):
                 template,
                 None,
                 {
-                    'events': events,
+                    'events': sorted(events, key=lambda k: k['dtstart']),
                     'lang': LocaleBorg().current_lang,
                 })
             with open("plugins/calendar_preformat/templates/jinja/%s" % output_filename, "w") as outputfile:
