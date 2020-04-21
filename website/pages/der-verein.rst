@@ -25,11 +25,10 @@ An diesen Veranstaltungen nahmen jeweils ca. 130-150 Linux-Fans aus dem In- und 
  
 Wie in jedem Verein, so gibt es natürlich auch in der LUG Flensburg e.V. bestimmte Funktionen, die dem Vereinsrecht entsprechend besetzt werden müssen. Der von den Mitgliedern gewählte Vorstand setzt sich aktuell wie folgt zusammen:
 
-| 1. Vorsitzender Frank Agerholm, Flensburg
-| 2. Vorsitzender Jan Boysen, Flensburg
-| Kassenwart Jan Boysen, Flensburg
-| Schriftführer Immo Veress, Flensburg
-| 
+* \1. Vorsitzender Frank Agerholm, Flensburg
+* \2. Vorsitzender Jan Boysen, Flensburg
+* Kassenwart Jan Boysen, Flensburg
+* Schriftführer Immo Veress, Flensburg
 
 Bei Fragen rund um die Linux User Group Flensburg e.V. kannst Du Dich also auch vertrauensvoll an diese Mitglieder wenden. Um uns zu erreichen, kannst Du verschiedene Möglichkeiten, Kontakt zu uns aufzunehmen.
 Mitglied werden
