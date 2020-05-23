@@ -22,14 +22,26 @@ Auch wenn wir ein Verein sind, ist es selbstverständlich auch zukünftig so, da
 Absolute Highlights für unseren Verein und unsere Mitglieder waren natürlich die Ausrichtung der LUG Camps im Jahr 2002, 2004, 2008 und 2012.
  
 An diesen Veranstaltungen nahmen jeweils ca. 130-150 Linux-Fans aus dem In- und Ausland teil. Im Rahmen der Camps wurde auch ein "Tag der offenen Tür" durchgeführt, bei dem Linux-Interessierte sich vor Ort über die Möglichkeiten und Stärken von Linux informieren konnten. Sämtliche Mitglieder, die sich aktiv an diesem Camp beteiligten sind sich einig, daß wir das irgendwann erneut ausrichten müssen weil es uns allen wahnsinnig viel Spaß gemacht hat.
- 
+
+Der Vorstand
+------------
+
 Wie in jedem Verein, so gibt es natürlich auch in der LUG Flensburg e.V. bestimmte Funktionen, die dem Vereinsrecht entsprechend besetzt werden müssen. Der von den Mitgliedern gewählte Vorstand setzt sich aktuell wie folgt zusammen:
+
 
 * \1. Vorsitzender Frank Agerholm, Flensburg
 * \2. Vorsitzender Jan Boysen, Flensburg
 * Kassenwart Jan Boysen, Flensburg
 * Schriftführer Immo Veress, Flensburg
 
+
+
 Bei Fragen rund um die Linux User Group Flensburg e.V. kannst Du Dich also auch vertrauensvoll an diese Mitglieder wenden. Um uns zu erreichen, kannst Du verschiedene Möglichkeiten, Kontakt zu uns aufzunehmen.
+
+
 Mitglied werden
-Wenn Du Mitglied der LUG Flensburg e.V. werden möchtest, kannst Du Dir hier das Aufnahmeformular herunterladen. Bringe den ausgefüllten und unterschriebenen Bogen einfach zu einer unserer Veranstaltungen mit und gebe ihn beim Vorstand ab. Bitte beachten: Bei Minderjährigen wird auf dem Antrag die Unterschrift der Erziehungsberechtigten benötigt!
+---------------
+
+
+Wenn Du Mitglied der LUG Flensburg e.V. werden möchtest, kannst Du Dir hier das `Aufnahmeformular </Aufnahmeantrag2014-2.pdf>`_ herunterladen.
+Bringe den ausgefüllten und unterschriebenen Bogen einfach zu einer unserer Veranstaltungen mit und gebe ihn beim Vorstand ab. Bitte beachten: Bei Minderjährigen wird auf dem Antrag die Unterschrift der Erziehungsberechtigten benötigt!
