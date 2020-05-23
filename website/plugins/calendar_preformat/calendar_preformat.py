@@ -70,6 +70,10 @@ class Plugin(Task):
                         eventdict['dtstart'] = element.get('dtstart').dt
                     if element.get('dtend') is not None:
                         eventdict['dtend'] = element.get('dtend').dt
+                    if element.get('x-lugfl-alwaysvisible') is not None:
+                        eventdict['x-lugfl-alwaysvisible'] = True
+                    else:
+                        eventdict['x-lugfl-alwaysvisible'] = False
 
                     rules_text = '\n'.join([line for line in element.content_lines() if line.startswith('RRULE')])
                     if days_in_future is not None and rules_text:
@@ -106,6 +110,12 @@ class Plugin(Task):
                             new_entry['dtstart'] = entry_calcdate
                             new_entry['dtend'] = entry_calcdate + duration
                             events.append(new_entry)
+                    if days_in_future is not None:
+                        if days_in_past is not None and eventdict['dtstart'] > calc_startdate and (
+                                eventdict['dtstart'] < calc_enddate or eventdict['x-lugfl-alwaysvisible']):
+                            events.append(eventdict)
+                        elif days_in_past is None and eventdict['dtstart'] < calc_enddate or eventdict['x-lugfl-alwaysvisible']:
+                            events.append(eventdict)
                     else:
                         events.append(eventdict)
 
