@@ -4,8 +4,8 @@ This website uses Nikola Static Site generator
 
 To build a local version you need Python 3.5.3 or newer. 
 
-	$ python3 -V
-	Python 3.6.4
+    $ python3 -V
+    Python 3.6.4
 
 Clone or download a copy of this repository:
 
@@ -38,3 +38,26 @@ Or to create a news entry
     Title: Neue Webseite der LUGFL erblickt das Licht der Welt
     Scanning posts........done!
     [2018-09-30T08:33:02Z] INFO: new_post: Your post's text is at: posts/neue-webseite-der-lugfl-erblickt-das-licht-der-welt.rst
+
+
+# How to update dependencies
+
+The requirements.txt file lists the exact versions of all python-packages and
+and there dependencies.
+
+The requirements-dev.txt file lists only "wanted" python-packages. Dependencies
+of this packages are automaticly installed by pip.
+
+To Update the requirements.txt file create a clean virtualenv and install Nikola with:
+
+    $ pip install -r requirements-dev.txt
+
+If everything is working well, recreate the requirements.txt file with:
+
+    $ pip freeze > requirements.txt
+
+Commit both files into the repository.
+
+Our automatic Build-Script will use requirements.txt only.
+
+
