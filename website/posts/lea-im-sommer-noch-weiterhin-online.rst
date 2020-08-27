@@ -1,8 +1,8 @@
 .. title: LEA im Sommer noch weiterhin online
 .. slug: lea-im-sommer-noch-weiterhin-online
 .. date: 2020-05-22 21:23:37 UTC+02:00
-.. tags: lea
-.. category: events 
+.. tags: 
+.. category: lea
 .. link: 
 .. description: 
 .. type: text
