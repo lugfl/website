@@ -1,8 +1,8 @@
 .. title: LEA im Mai wieder online
 .. slug: lea-im-mai-wieder-online
 .. date: 2020-05-19 16:47:36 UTC+02:00
-.. tags: lea
-.. category: events
+.. tags:
+.. category: lea
 .. link: 
 .. description: 
 .. type: text

@@ -2,7 +2,7 @@
 .. slug: lea-am-280820-wird-online-stattfinden
 .. date: 2020-08-27 12:15:00 UTC+02:00
 .. tags: 
-.. category: LEA
+.. category: lea
 .. link: 
 .. description: 
 .. type: text

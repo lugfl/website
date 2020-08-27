@@ -2,7 +2,7 @@
 .. slug: lea-link-fur-heute-1900
 .. date: 2020-03-27 12:08:35 UTC+01:00
 .. tags: 
-.. category: 
+.. category: lea
 .. link: 
 .. description: 
 .. type: text
