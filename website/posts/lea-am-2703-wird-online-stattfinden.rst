@@ -2,7 +2,7 @@
 .. slug: lea-am-2703-wird-online-stattfinden
 .. date: 2020-03-21 11:21:47 UTC+01:00
 .. tags: 
-.. category: 
+.. category: lea
 .. link: 
 .. description: 
 .. type: text
