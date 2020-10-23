@@ -1,0 +1,10 @@
+.. title: LEA am 23.10.20
+.. slug: lea-am-231020
+.. date: 2020-10-23 17:22:52 UTC+02:00
+.. tags: lea
+.. category: events
+.. link: 
+.. description: Link für unseren nächsten Online-LEA
+.. type: text
+
+https://meet.serverwg.de/lea
