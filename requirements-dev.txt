@@ -1,3 +1,5 @@
 Nikola==8.1.*
 icalendar==4.*
 Jinja2==2.*
+aiohttp==3.7.*
+watchdog==0.10.*
