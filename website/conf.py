@@ -141,7 +141,7 @@ NAVIGATION_LINKS = {
         ("/pages/der-verein/", "Der Verein"),
         ("/pages/entstehung-der-lugfl/", "Entstehung"),
         ("/pages/satzung/", "Satzung"),
-        ("/pages/datenschutzerklarung/", "Datenschutzerklärung"),
+        ("/pages/datenschutzerklaerung/", "Datenschutzerklärung"),
         ("/pages/impressum/", "Impressum"),
     ),
 }
