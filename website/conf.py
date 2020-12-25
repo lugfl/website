@@ -5,6 +5,11 @@ import babel
 import os
 from dotenv import load_dotenv
 
+# Load Environment-Variables from .env file
+# Example File Content:
+#
+# REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+#
 load_dotenv()
 
 # !! This is the configuration of Nikola. !! #
