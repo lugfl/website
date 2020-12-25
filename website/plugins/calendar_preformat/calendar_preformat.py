@@ -32,7 +32,7 @@ import icalendar as ical
 from pytz import UTC
 import pytz
 from babel.dates import format_datetime
-
+import os
 from nikola.plugin_categories import Task
 from nikola.utils import LOGGER, get_logger, LocaleBorg, TemplateHookRegistry
 
@@ -48,12 +48,12 @@ class CalendarPlugin(Task):
         log_calendar = get_logger('log_calendar')
 
         url = self.site.config.get('CALENDAR_URL', None)
-        log_calendar.info(url)
+        log_calendar.debug(url)
 
         def fetch_online_calendar(url = None):
             if url != None:
                 ical = requests.request('GET', url)
-                log_calendar.info("Downloaded")
+                log_calendar.debug("Downloaded")
                 self.site.cache.set('events_ical',ical.text)
 
 
@@ -134,7 +134,7 @@ class CalendarPlugin(Task):
                     else:
                         events.append(eventdict)
 
-            log_calendar.info("collect_events finished")
+            log_calendar.debug("collect_events finished")
             return events
 
         def generate_calendar_list(timezone_name, days_in_past, days_in_future):
@@ -143,7 +143,15 @@ class CalendarPlugin(Task):
 
             events = collect_events(days_in_past, days_in_future)
             self.site._GLOBAL_CONTEXT['events'] = sorted(events, key=lambda k: k['dtstart'])
-            log_calendar.info("generate_calendar_list finished")
+            log_calendar.debug("generate_calendar_list finished")
+
+        def generate_output_ics():
+            cache_cal = self.site.cache.get('events_ical')
+            out_folder = self.site.config['OUTPUT_FOLDER']
+            out_file = os.path.join(out_folder, 'LUGFL.ics')
+            with open(out_file,'w') as f:
+                f.write(cache_cal)
+            log_calendar.debug("generate_output_ics finished")
 
         # File to read VEVENTS from
         calendar_url = self.site.config.get('CALENDAR_URL',None)
@@ -166,8 +174,17 @@ class CalendarPlugin(Task):
         if calendar_url is not None:
             yield {
                 'basename': 'calendar_preformat',
+                'name': 'generate_output_ics',
+                'actions': [
+                    (generate_output_ics)
+                ],
+                'uptodate': [False],
+            }
+            yield {
+                'basename': 'calendar_preformat',
                 'name': 'generate_calendar_list',
                 'actions': [
+                    (generate_output_ics),
                     (generate_calendar_list, [timezone_name, calendar_days_in_past, calendar_days_in_future])
                 ],
                 'uptodate': [False],
