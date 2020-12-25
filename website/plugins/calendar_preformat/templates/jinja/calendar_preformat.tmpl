@@ -2,7 +2,8 @@
     {% for event in events %}
     <div itemprop="event" itemscope itemtype="http://schema.org/Event">
         <dt itemprop="name">{{ event.summary }}</dt>
-        <dd itemprop="location">{{ event.location|replace('\n', '<br>') }}</dd>
+        <dd itemprop="location">{{ event.location| urlize | replace('\n', '<br>') }}</dd>
+        <dd itemprop="description">{{ event.description| replace('\n', '<br>') }}</dd>
         <div class="event-date">
             <dd><meta itemprop="startDate" content="{{ event.dtstart|datetime('short') }}">Am: {{ event.dtstart|datetime('short') }}</dd>
             {% if event.dtend %}

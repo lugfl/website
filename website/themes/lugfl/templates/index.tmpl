@@ -67,7 +67,7 @@
         <div class="col-md-3">
             <h3><a href="/LUGFL.ics">Nächste Events:</a></h3>
             <br>
-            {% include 'events.tmpl' ignore missing %}
+            {% include 'calendar_preformat.tmpl' ignore missing with context %}
         </div>
     </div>
     {{ helper.html_pager() }}
