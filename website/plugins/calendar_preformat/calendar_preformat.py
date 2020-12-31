@@ -52,16 +52,27 @@ class CalendarPlugin(Task):
 
         def fetch_online_calendar(url = None):
             if url != None:
-                ical = requests.request('GET', url)
-                log_calendar.debug("Downloaded")
-                self.site.cache.set('events_ical',ical.text)
+                try:
+                  ical = requests.request('GET', url)
+                  ical.raise_for_status()
+                  log_calendar.debug("Downloaded")
+                  self.site.cache.set('events_ical',ical.text)
+                except requests.exceptions.RequestException as e:
+                  log_calendar.error(e)
 
 
         def collect_events(days_in_past, days_in_future):
-            cache_cal = self.site.cache.get('events_ical')
-            cal = ical.Calendar.from_ical(cache_cal)
-
             events = []
+
+            try:
+                cache_cal = self.site.cache.get('events_ical')
+                if cache_cal is None:
+                    return events
+
+                cal = ical.Calendar.from_ical(cache_cal)
+            except ValueError as e:
+                log_calendar.error(e)
+                return events
 
             calc_startdate = datetime.now(tz=UTC)
             if days_in_past:
@@ -147,6 +158,8 @@ class CalendarPlugin(Task):
 
         def generate_output_ics():
             cache_cal = self.site.cache.get('events_ical')
+            if cache_cal is None:
+              return
             out_folder = self.site.config['OUTPUT_FOLDER']
             out_file = os.path.join(out_folder, 'LUGFL.ics')
             with open(out_file,'w') as f:
