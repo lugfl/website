@@ -25,28 +25,54 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import doit
+from doit.tools import run_once, result_dep
 from datetime import datetime, timedelta
 from dateutil.rrule import rrulestr, rruleset
 import icalendar as ical
 from pytz import UTC
 import pytz
 from babel.dates import format_datetime
-
+import os
 from nikola.plugin_categories import Task
-from nikola.utils import LOGGER, LocaleBorg
+from nikola.utils import LOGGER, get_logger, LocaleBorg, TemplateHookRegistry
+
+import requests
 
 
-class Plugin(Task):
+class CalendarPlugin(Task):
 
     name = "calendar_preformat"
 
     def gen_tasks(self):
 
-        def collect_events(filename, days_in_past, days_in_future):
-            with open(filename) as inputfile:
-                cal = ical.Calendar.from_ical(inputfile.read())
+        log_calendar = get_logger('log_calendar')
 
+        url = self.site.config.get('CALENDAR_URL', None)
+        log_calendar.debug(url)
+
+        def fetch_online_calendar(url = None):
+            if url != None:
+                try:
+                  ical = requests.request('GET', url)
+                  ical.raise_for_status()
+                  log_calendar.debug("Downloaded")
+                  self.site.cache.set('events_ical',ical.text)
+                except requests.exceptions.RequestException as e:
+                  log_calendar.error(e)
+
+
+        def collect_events(days_in_past, days_in_future):
             events = []
+
+            try:
+                cache_cal = self.site.cache.get('events_ical')
+                if cache_cal is None:
+                    return events
+
+                cal = ical.Calendar.from_ical(cache_cal)
+            except ValueError as e:
+                log_calendar.error(e)
+                return events
 
             calc_startdate = datetime.now(tz=UTC)
             if days_in_past:
@@ -119,37 +145,61 @@ class Plugin(Task):
                     else:
                         events.append(eventdict)
 
+            log_calendar.debug("collect_events finished")
             return events
 
-        def generate_calendar_template(timezone_name, filename, days_in_past, days_in_future, output_filename):
+        def generate_calendar_list(timezone_name, days_in_past, days_in_future):
             template = 'calendar_preformat.tmpl'
             deps = self.site.template_system.template_deps(template)
-            deps.append(filename)
 
-            events = collect_events(filename, days_in_past, days_in_future)
-            output = self.site.render_template(
-                template,
-                None,
-                {
-                    'events': sorted(events, key=lambda k: k['dtstart']),
-                    'lang': LocaleBorg().current_lang,
-                })
-            with open("plugins/calendar_preformat/templates/jinja/%s" % output_filename, "w") as outputfile:
-                outputfile.write(output)
+            events = collect_events(days_in_past, days_in_future)
+            self.site._GLOBAL_CONTEXT['events'] = sorted(events, key=lambda k: k['dtstart'])
+            log_calendar.debug("generate_calendar_list finished")
+
+        def generate_output_ics():
+            cache_cal = self.site.cache.get('events_ical')
+            if cache_cal is None:
+              return
+            out_folder = self.site.config['OUTPUT_FOLDER']
+            out_file = os.path.join(out_folder, 'LUGFL.ics')
+            with open(out_file,'w') as f:
+                f.write(cache_cal)
+            log_calendar.debug("generate_output_ics finished")
 
         # File to read VEVENTS from
+        calendar_url = self.site.config.get('CALENDAR_URL',None)
         calendar_filename = self.site.config.get('CALENDAR_FILENAME', None)
         calendar_days_in_past = self.site.config.get('CALENDAR_DAYS_IN_PAST', 0)
         calendar_days_in_future = self.site.config.get('CALENDAR_DAYS_IN_FUTURE', 90)
-        calendar_output_filename = self.site.config.get('CALENDAR_OUTPUT_FILENAME', 'events.tmpl')
+        calendar_output_filename = self.site.config.get('CALENDAR_OUTPUT_FILENAME', 'calendar_preformat.tmpl')
 
         timezone_name = self.site.config.get('TIMEZONE')
 
+        yield {
+            'basename': 'calendar_preformat',
+            'name': 'calendar_download',
+            'actions': [
+                (fetch_online_calendar,[url])
+            ],
+            'uptodate': [False],
+        }
         # Yield a task for Doit
-        if calendar_filename is not None:
+        if calendar_url is not None:
             yield {
                 'basename': 'calendar_preformat',
-                'actions': [(generate_calendar_template, [timezone_name, calendar_filename, calendar_days_in_past, calendar_days_in_future, calendar_output_filename])],
+                'name': 'generate_output_ics',
+                'actions': [
+                    (generate_output_ics)
+                ],
+                'uptodate': [False],
+            }
+            yield {
+                'basename': 'calendar_preformat',
+                'name': 'generate_calendar_list',
+                'actions': [
+                    (generate_output_ics),
+                    (generate_calendar_list, [timezone_name, calendar_days_in_past, calendar_days_in_future])
+                ],
                 'uptodate': [False],
             }
         else:

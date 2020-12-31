@@ -3,6 +3,14 @@
 import time
 import babel
 import os
+from dotenv import load_dotenv
+
+# Load Environment-Variables from .env file
+# Example File Content:
+#
+# REQUESTS_CA_BUNDLE=/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+#
+load_dotenv()
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -1354,6 +1362,8 @@ GLOBAL_CONTEXT = {}
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+CALENDAR_URL = "https://cloud.serverwg.de/remote.php/dav/public-calendars/Yg3jeT8xfmiPbcyE/?export"
 
 # File to read VEVENTS from
 CALENDAR_FILENAME = "files/LUGFL.ics"
