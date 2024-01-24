@@ -5,9 +5,9 @@
         <dd itemprop="location">{{ event.location| urlize | replace('\n', '<br>') }}</dd>
         <dd itemprop="description">{{ event.description| replace('\n', '<br>') }}</dd>
         <div class="event-date">
-            <dd><meta itemprop="startDate" content="{{ event.dtstart|datetime('short') }}">Am: {{ event.dtstart|datetime('short') }}</dd>
+            <dd><meta itemprop="startDate" content="{{ event.dtstart|datetime('iso') }}">Am: {{ event.dtstart|datetime('short') }}</dd>
             {% if event.dtend %}
-                <dd><meta itemprop="endDate" content="{{ event.dtend|datetime('short') }}">Bis: {{ event.dtend|datetime('short') }}</dd>
+                <dd><meta itemprop="endDate" content="{{ event.dtend|datetime('iso') }}">Bis: {{ event.dtend|datetime('short') }}</dd>
             {% endif %}
             {% if event.url %}
                 <dd class="footer"><a href="{{ event.url }}">Mehr...</a></dd>

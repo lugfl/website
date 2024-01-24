@@ -3,6 +3,7 @@
 import time
 import babel
 import os
+import datetime
 from dotenv import load_dotenv
 
 # Load Environment-Variables from .env file
@@ -1344,7 +1345,9 @@ WARN_ABOUT_TAG_METADATA = False
 # Consult your engine's documentation on filters if you need help defining
 # those.
 def format_datetime(value, format='medium', locale="de"):
-    if format == 'full':
+    if format == 'iso':
+        return value.isoformat()
+    elif format == 'full':
         format="EEEE, d. MMMM y HH:mm"
     elif format == 'medium':
         format="EE dd.MM.y HH:mm"
