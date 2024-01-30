@@ -45,3 +45,8 @@ Mitglied werden
 
 Wenn Du Mitglied der LUG Flensburg e.V. werden möchtest, kannst Du Dir hier das `Aufnahmeformular </Aufnahmeantrag2020.pdf>`_ herunterladen.
 Bringe den ausgefüllten und unterschriebenen Bogen einfach zu einer unserer Veranstaltungen mit und gebe ihn beim Vorstand ab. Bitte beachten: Bei Minderjährigen wird auf dem Antrag die Unterschrift der Erziehungsberechtigten benötigt!
+
+Dokumente:
+
+* `Aufnahmeformular </Aufnahmeantrag2020.pdf>`_ 
+
