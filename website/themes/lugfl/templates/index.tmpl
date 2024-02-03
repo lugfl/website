@@ -12,6 +12,22 @@
         <link rel="prefetch" href="{{ posts[0].permalink() }}" type="text/html">
     {% endif %}
     {{ math.math_styles_ifposts(posts) }}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Flensburg, Germany",
+        "postalCode": "24941",
+        "streetAddress": "Roggenbogen 14"
+      },
+      "email": "info(at)lugfl.de",
+      "name": "Linux User Group Flensburg e.V. (LUGFL)",
+      "logo": "https://www.lugfl.de/assets/img/logo_header.png",
+      "url": "https://www.lugfl.de",
+    }
+    </script>
 {% endblock %}
 
 {% block content %}
