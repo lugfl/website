@@ -243,3 +243,7 @@ den Mitgliedern unverzüglich bekanntzugeben.
 Die vorstehende Satzung wurde am 28. Juli 2000 errichtet.
 
 Zuletzt geändert durch durch Beschluss der Mitgliederversammlung am 26.02.21.
+
+Dokumente:
+
+* [Satzung in der Fassung vom 26.02.2021](/Satzung_2021.pdf)
