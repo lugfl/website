@@ -4,3 +4,6 @@ Jinja2
 aiohttp
 watchdog
 python-dotenv
+rstcheck
+docutils
+esbonio
