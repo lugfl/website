@@ -52,13 +52,18 @@ class CalendarPlugin(Task):
 
         def fetch_online_calendar(url = None):
             if url != None:
-                try:
-                  ical = requests.request('GET', url)
-                  ical.raise_for_status()
-                  log_calendar.debug("Downloaded")
-                  self.site.cache.set('events_ical',ical.text)
-                except requests.exceptions.RequestException as e:
-                  log_calendar.error(e)
+                max_retries = 5
+                retries = 0
+                while retries < max_retries:
+                    try:
+                        ical = requests.request('GET', url)
+                        ical.raise_for_status()
+                        log_calendar.debug("Downloaded")
+                        self.site.cache.set('events_ical',ical.text)
+                        retries = max_retries
+                    except requests.exceptions.RequestException as e:
+                      log_calendar.error(e)
+                    retries = retries + 1
 
 
         def collect_events(days_in_past, days_in_future):
