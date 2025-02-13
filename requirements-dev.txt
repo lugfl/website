@@ -7,3 +7,5 @@ python-dotenv
 rstcheck
 docutils
 esbonio
+pytz
+certifi-linux
