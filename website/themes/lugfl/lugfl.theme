@@ -1,4 +1,5 @@
 [Theme]
 engine = jinja
-parent = bootstrap4-jinja
+#parent = bootstrap4-jinja
+parent = bootblog4-jinja
 
