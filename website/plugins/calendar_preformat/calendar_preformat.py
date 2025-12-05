@@ -26,7 +26,7 @@
 
 import doit
 from doit.tools import run_once, result_dep
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from dateutil.rrule import rrulestr, rruleset
 import icalendar as ical
 from pytz import UTC
@@ -82,9 +82,15 @@ class CalendarPlugin(Task):
             calc_startdate = datetime.now(tz=UTC)
             if days_in_past:
                 calc_startdate -= timedelta(days=int(days_in_past))
+                if isinstance(calc_startdate, date):
+                    calc_startdate = datetime(calc_startdate.year, calc_startdate.month, calc_startdate.day, tzinfo=UTC)
+            #print(f"calc_startdate {type(calc_startdate)}: {calc_startdate}")
             calc_enddate = datetime.now(tz=UTC)
+            if isinstance(calc_enddate, date):
+                calc_enddate = datetime(calc_enddate.year, calc_enddate.month, calc_enddate.day, tzinfo=UTC)
             if days_in_future:
                 calc_enddate += timedelta(days=int(days_in_future))
+            #print(f"calc_enddate {type(calc_enddate)}: {calc_enddate}")
 
             for element in cal.walk():
                 eventdict = {}
@@ -142,10 +148,16 @@ class CalendarPlugin(Task):
                             new_entry['dtend'] = entry_calcdate + duration
                             events.append(new_entry)
                     if days_in_future is not None:
-                        if days_in_past is not None and eventdict['dtstart'] > calc_startdate and (
-                                eventdict['dtstart'] < calc_enddate or eventdict['x-lugfl-alwaysvisible']):
+                        dtstart = eventdict['dtstart'] # only for compare operations
+                        #print(f"dtstart {type(dtstart)}: {dtstart}")
+                        if isinstance(dtstart, date):
+                            print("dtstart convert")
+                            dtstart = datetime(dtstart.year, dtstart.month, dtstart.day, tzinfo=UTC)
+                        #print(f"dtstart {type(dtstart)}: {dtstart}")
+                        if days_in_past is not None and dtstart > calc_startdate and (
+                                dtstart < calc_enddate or eventdict['x-lugfl-alwaysvisible']):
                             events.append(eventdict)
-                        elif days_in_past is None and eventdict['dtstart'] < calc_enddate or eventdict['x-lugfl-alwaysvisible']:
+                        elif days_in_past is None and dtstart < calc_enddate or eventdict['x-lugfl-alwaysvisible']:
                             events.append(eventdict)
                     else:
                         events.append(eventdict)
